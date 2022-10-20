@@ -1,0 +1,44 @@
+<mat-card style="margin: 20px;">
+  <form [formGroup]="detailForm" novalidate>
+    <section fxLayout="row wrap" fxLayoutAlign="space-between">
+      <div fxFlex="48" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput #firstName formControlName="firstName" name="firstName">
+          <mat-error>Required.</mat-error>
+          <mat-error *ngIf="firstName.value.length > 3"> Length too Long</mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="48" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput #lastName formControlName="lastName" name="lastName">
+          <mat-error *ngIf="lastName.value.length > 3"> Length too Long</mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="48" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput #emailAddress placeholder="Email Address" formControlName="emailAddress" name="emailAddress">
+          <mat-error *ngIf="!emailAddress.value">Email address is required</mat-error>
+          <mat-error *ngIf="!!emailAddress.value">Invalid email address</mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="48" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>Phone Number</mat-label>
+          <input matInput formControlName="phoneNumber" name="phoneNumber">
+        </mat-form-field>
+      </div>
+      <div fxFlex="48" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-select placeholder="Contact Method" formControlName="preferredContactMethod" name="preferredContactMethod">
+            <mat-option value="Email">Email</mat-option>
+            <mat-option value="Phone">Phone</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </section>
+    </form>
+    <button mat-raised-button (click)="save()" color="accent">Save</button>
+</mat-card>
